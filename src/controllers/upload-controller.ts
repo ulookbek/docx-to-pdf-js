@@ -3,9 +3,11 @@ const util = require('util')
 const {nanoid} = require("nanoid")
 const {pipeline} = require('stream')
 const pump = util.promisify(pipeline)
+import {FastifyInstance, FastifyRequest, FastifyReply} from "fastify"
 
-async function routes(fastify, options) {
-    fastify.post('/upload-template', async (req, reply) => {
+
+async function routes(fastify: FastifyInstance, options: any) {
+    fastify.post('/upload-template', async (req: FastifyRequest, reply: FastifyReply) => {
         try {
             const data = await req.file()
             console.log(Object.keys(data))
@@ -18,7 +20,7 @@ async function routes(fastify, options) {
         } catch (e) {
             console.log("error: ", e)
         }
-    })
+    });
 }
 
 module.exports = routes

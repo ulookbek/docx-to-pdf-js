@@ -1,6 +1,7 @@
 const config = require('./config')
-const fastify = require('fastify')()
-
+// const fastify = require('fastify')()
+import fsy from "fastify"
+const fastify = fsy()
 
 const fs = require('fs')
 const util = require('util')
