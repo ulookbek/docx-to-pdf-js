@@ -2,14 +2,13 @@ import fastify from "fastify"
 import fastifyMultipart from "fastify-multipart"
 import "fastify-multipart"
 import config from "./src/config"
-
-
+import controllers from "./src/controllers"
 
 const server = fastify()
 
 
-server.register(fastifyMultipart)
-server.register(require("./src/controllers"))
+server.register(fastifyMultipart, {})
+server.register(controllers, {prefix: "/v1"})
 
 const start = async () => {
     try {
@@ -21,5 +20,5 @@ const start = async () => {
 }
 
 start().then(() => {
-    console.log("Server started at localhost:5000")
+    global.console.info("Server started at localhost:5000")
 }).catch(console.log)
